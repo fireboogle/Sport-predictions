@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPORT PREDICTIONS</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #070a12;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 20px;
+  background: #0c1220;
+  border-bottom: 1px solid #172b48;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 900;
+  color: #168cff;
+}
+
+.logo span {
+  color: white;
+}
+
+.status {
+  color: #00e99a;
+  font-size: 11px;
+}
+
+.hero {
+  padding: 35px 20px;
+  background: radial-gradient(circle at top right,#102c55,#070a12 65%);
+}
+
+.hero h1 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.hero h1 span {
+  color: #168cff;
+}
+
+.hero p {
+  color: #9aa9c1;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.section {
+  padding: 22px 18px;
+}
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.sports {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.sports button {
+  background: #101a2c;
+  border: 1px solid #1c3455;
+  color: #cbd8eb;
+  padding: 12px 16px;
+  border-radius: 10px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.sports button.active {
+  background: #087cff;
+  color: white;
+  border-color: #087cff;
+}
+
+.card {
+  background: linear-gradient(145deg,#101a2b,#0b101c);
+  border: 1px solid #1b3150;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 15px;
+}
+
+.league {
+  color: #8296b4;
+  font-size: 11px;
+  margin-bottom: 16px;
+}
+
+.teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.team {
+  width: 40%;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.vs {
+  color: #168cff;
+  font-weight: bold;
+}
+
+.match-time {
+  color: #8da0bd;
+  text-align: center;
+  margin: 15px 0;
+  font-size: 12px;
+}
+
+.prediction {
+  background: #0a1c32;
+  border: 1px solid #164b83;
+  padding: 13px;
+  border-radius: 9px;
+  font-size: 12px;
+}
+
+.prediction strong {
+  color: #168cff;
+}
+
+.tag {
+  color: #00e99a;
+  font-size: 10px;
+  margin-top: 8px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+}
+
+.stat {
+  background: #101a2b;
+  border: 1px solid #1b3150;
+  padding: 18px;
+  border-radius: 12px;
+}
+
+.stat h2 {
+  color: #168cff;
+  font-size: 23px;
+}
+
+.stat p {
+  color: #8da0bd;
+  font-size: 11px;
+  margin-top: 7px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  color: #65758d;
+  font-size: 11px;
+  border-top: 1px solid #182943;
+  line-height: 1.8;
+}
+
+footer span {
+  color: #168cff;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">SPORT <span>PREDICTIONS</span></div>
+  <div class="status">● MULTI-SPORT</div>
+</header>
+
+<section class="hero">
+  <h1>SPORTS <span>INTELLIGENCE</span></h1>
+  <p>
+    Explore fixtures, statistics, match analysis
+    and AI-powered predictions across multiple
+    sports and competitions worldwide.
+  </p>
+</section>
+
+<section class="section">
+  <h3 class="section-title">EXPLORE SPORTS</h3>
+
+  <div class="sports">
+    <button class="active" onclick="selectSport(this,'All')">All Sports</button>
+    <button onclick="selectSport(this,'Football')">⚽ Football</button>
+    <button onclick="selectSport(this,'Basketball')">🏀 Basketball</button>
+    <button onclick="selectSport(this,'Tennis')">🎾 Tennis</button>
+    <button onclick="selectSport(this,'Baseball')">⚾ Baseball</button>
+    <button onclick="selectSport(this,'Hockey')">🏒 Hockey</button>
+    <button onclick="selectSport(this,'Volleyball')">🏐 Volleyball</button>
+  </div>
+</section>
+
+<section class="section">
+  <h3 class="section-title">📅 MATCH CENTRE</h3>
+
+  <div id="matches">
+    <div class="card">
+      <div class="league">MATCH DATA WILL APPEAR HERE</div>
+      <div class="teams">
+        <div class="team">Home Team</div>
+        <div class="vs">VS</div>
+        <div class="team">Away Team</div>
+      </div>
+      <div class="match-time">
+        Live fixtures will load when sports APIs are connected.
+      </div>
+      <div class="prediction">
+        <strong>AI ANALYSIS</strong>
+        <p>Predictions will be generated from available match statistics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h3 class="section-title">🤖 PREDICTION CENTRE</h3>
+
+  <div class="stats">
+    <div class="stat">
+      <h2>AI</h2>
+      <p>Automatic Analysis</p>
+    </div>
+
+    <div class="stat">
+      <h2>24/7</h2>
+      <p>Platform Availability</p>
+    </div>
+
+    <div class="stat">
+      <h2>ALL</h2>
+      <p>Supported Sports</p>
+    </div>
+
+    <div class="stat">
+      <h2>FREE</h2>
+      <p>Public Access</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>SPORT PREDICTIONS</span><br>
+  Multi-Sport Prediction Platform<br><br>
+  Predictions are estimates, not guaranteed outcomes.
+</footer>
+
+<script>
+function selectSport(button, sport) {
+  document.querySelectorAll('.sports button')
+    .forEach(btn => btn.classList.remove('active'));
+
+  button.classList.add('active');
+
+  document.getElementById('matches').innerHTML =
+    '<div class="card"><div class="league">' +
+    sport.toUpperCase() +
+    '</div><p style="color:#8da0bd;font-size:13px;">' +
+    'Fixtures and match information will appear here when the sports data APIs are connected.' +
+    '</p></div>';
+}
+</script>
+
+</body>
+</html>
